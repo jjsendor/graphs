@@ -73,18 +73,17 @@ public class AdjacencyMatrixGraph implements Graph {
 		Stack<Integer> stack = new Stack<Integer>();
 
 		stack.push(start);
-		visited[start] = true;
 
 		do {
 			int x = stack.pop();
 
-			vv.visit(x);
+			if (!visited[x]) {
+				vv.visit(x);
+				visited[x] = true;
 
-			for (int i = 0; i < n; i++) {
-				if (matrix[x][i]) {
-					if (!visited[i]) {
+				for (int i = 0; i < n; i++) {
+					if (matrix[x][i]) {
 						stack.push(i);
-						visited[i] = true;
 					}
 				}
 			}
